@@ -22,7 +22,7 @@ function App() {
     <>
     <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4 bg-cover bg-center h-screen bg-contain"
     style={{ backgroundImage: `url(${bgImg})` }}>
-      <div className="max-w-130 bg-[#fffdd0] border-4 border-[#e0deb4] p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+      <div className="max-w-130 bg-[#fffdd0] border-4 border-[#e0deb4] p-4 shadow-[4px_4px_0px_0px_rgba(121,142,154,1)]">
         <h2 className="text-xl py-2.5 font-bold text-gray-800">Time to Study!</h2>
         <p className="mt-2 text-gray-600">Answer this question before you can continue scrolling.</p>
       </div>
