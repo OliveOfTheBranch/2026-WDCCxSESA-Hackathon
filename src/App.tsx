@@ -31,8 +31,8 @@ function App() {
         className="flex min-h-screen items-center justify-center bg-gray-100 p-4 bg-cover bg-center h-screen bg-contain"
         style={{ backgroundImage: `url(${bgImg})` }}
       >
-        <div className="w-full max-w-[520px] rounded-2xl bg-white/75 p-6 shadow-xl">
-          <h2 className="text-xl py-[10px] font-bold text-gray-800">
+        <div className="max-w-130 bg-[#fffdd0] border-4 border-[#e0deb4] p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <h2 className="text-xl py-2.5 font-bold text-gray-800">
             Time to Study!
           </h2>
           <p className="mt-2 text-gray-600">
@@ -40,18 +40,6 @@ function App() {
           </p>
         </div>
       </div>
-      <section>
-        <p>What do you want to learn about?</p>
-        <input
-          placeholder="Type your preferred subject here..."
-          value={subject}
-          onChange={handleChangeSubject}
-        />
-        <button onClick={handleSaveSubject}>Submit</button>
-        <button onClick={() => alert(localStorage.getItem("subject"))}>
-          Test
-        </button>
-      </section>
       <br />
       <section>
         <p>Explain {localStorage.getItem("subject")} to me.</p>
