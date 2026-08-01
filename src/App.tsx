@@ -13,6 +13,9 @@ function App() {
   const givenSubject = searchParams.get("subject") || "";
   if (givenSubject) localStorage.setItem("subject", givenSubject);
 
+  const givenRedirect = searchParams.get("redirect") || "";
+  const isRedirect = givenRedirect === "true";
+
   const handleChangeAnswer = (event: any) => {
     setAnswer(event.target.value);
   };
@@ -32,12 +35,26 @@ function App() {
         style={{ backgroundImage: `url(${bgImg})` }}
       >
         <div className="max-w-130 bg-[#fffdd0] border-4 border-[#e0deb4] p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-          <h2 className="text-xl py-2.5 font-bold text-gray-800">
-            Time to Study!
-          </h2>
-          <p className="mt-2 text-gray-600">
-            Answer this question before you can continue scrolling.
-          </p>
+          {isRedirect ? (
+            <>
+              <h2 className="text-xl py-2.5 font-bold text-gray-800">
+                Time to Study!
+              </h2>
+              <p className="mt-2 text-gray-600">
+                Answer this question before you can continue scrolling.
+              </p>
+            </>
+          ) : (
+            <>
+              <h2 className="text-xl py-2.5 font-bold text-gray-800">
+                Subject Set!
+              </h2>
+              <p className="mt-2 text-gray-600">
+                Next time you're scrolling, we'll ask you questions about{" "}
+                {localStorage.getItem("subject")}.
+              </p>
+            </>
+          )}
         </div>
       </div>
       <br />
