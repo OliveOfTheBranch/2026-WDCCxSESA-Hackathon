@@ -1,4 +1,5 @@
 import { use, useState } from "react";
+import bgImg from './assets/Sprite-0003.png';
 import "./index.css";
 
 function App() {
@@ -19,6 +20,13 @@ function App() {
 
   return (
     <>
+    <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4 bg-cover bg-center h-screen bg-contain"
+    style={{ backgroundImage: `url(${bgImg})` }}>
+      <div className="w-full max-w-[520px] rounded-2xl bg-white/75 p-6 shadow-xl">
+        <h2 className="text-xl py-[10px] font-bold text-gray-800">Time to Study!</h2>
+        <p className="mt-2 text-gray-600">Answer this question before you can continue scrolling.</p>
+      </div>
+    </div>
       <section>
         <p>What do you want to learn about?</p>
         <input
