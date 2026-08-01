@@ -1,12 +1,22 @@
+import { useState } from "react";
 import "./index.css";
 
 function App() {
+  const [answer, setAnswer] = useState("");
+
+  const handleChangeAnswer = (event: any) => {
+    setAnswer(event.target.value);
+  };
+
   return (
     <>
       <section className="flex-1 place-items-center">
-        <h1 className="text-4xl font-bold text-black underline decoration-pink-500">
-          Go d1 larpers!
-        </h1>
+        <input
+          placeholder="Type your answer here..."
+          value={answer}
+          onChange={handleChangeAnswer}
+        />
+        <button onClick={() => alert(answer)}>Submit</button>
       </section>
     </>
   );
