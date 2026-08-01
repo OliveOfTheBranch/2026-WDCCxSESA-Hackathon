@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import bgImg from "../assets/Sprite-0003.png";
+import bgImg from "./assets/Sprite-0003.png";
 import "./index.css";
 
 function App() {
@@ -15,14 +15,6 @@ function App() {
 
   const handleChangeAnswer = (event: any) => {
     setAnswer(event.target.value);
-  };
-
-  const handleChangeSubject = (event: any) => {
-    setSubject(event.target.value);
-  };
-
-  const handleSaveSubject = () => {
-    localStorage.setItem("subject", subject);
   };
 
   return (

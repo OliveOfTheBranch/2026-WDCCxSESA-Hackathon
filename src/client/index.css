@@ -6,14 +6,14 @@
 
 @font-face {
   font-family: 'Minecraft';
-  src: url('./assets/Minecraft.ttf') format('truetype');
+  src: url('../assets/Minecraft.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Minecraft';
-  src: url('./assets/Minecraft.ttf') format('truetype');
+  src: url('../assets/Minecraft.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 }
