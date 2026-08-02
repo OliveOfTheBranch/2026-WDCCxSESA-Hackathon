@@ -10,7 +10,7 @@ function App() {
 
   const searchParams = useMemo(() => {
     return new URLSearchParams(window.location.search);
-  }, [window.location.search]);
+  }, []);
 
   const givenSubject = searchParams.get("subject") || "";
   if (givenSubject) localStorage.setItem("subject", givenSubject);
@@ -46,26 +46,30 @@ function App() {
               </p>
             </>
           )}
+
+          <br />
+          <section>
+            <p>AI QUESTION</p>
+            <textarea
+              id="answerToAI"
+              className="bg-white border-2 border-black p-1 w-full"
+              rows={3}
+              placeholder="Type your answer here..."
+              value={answer}
+              onChange={handleChangeAnswer}
+            />
+            <br />
+            <button
+              className="bg-white border-2 border-[#e0deb4] px-2 pt-1 align-middle"
+              onClick={() => alert(answer)}
+            >
+              SUBMIT
+            </button>
+            <hr className="my-4 h-0.5 bg-[#e0deb4] border-0" />
+            <p>AI CRITIQUE</p>
+          </section>
         </div>
       </div>
-      <br />
-      <section>
-        <p>Explain {localStorage.getItem("subject")} to me.</p>
-        <input
-          placeholder="Type your answer here..."
-          value={answer}
-          onChange={handleChangeAnswer}
-        />
-        <button onClick={() => alert(answer)}>Submit</button>
-      </section>
-      <button
-        onClick={() =>
-          setQuestion(fetchGPTQuestion("Being silly and whimsical."))
-        }
-      >
-        TESTTEST
-      </button>
-      <p>{question}</p>
     </>
   );
 }
