@@ -53,6 +53,9 @@ app.get("/", async (req, res) =>{
     res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
 })
 
+//default server listening
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
+
+//to start the server: run `npm run devstart` and then in a new terminal, run `npm run dev` and visit localhost 5173
