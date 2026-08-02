@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import bgImg from "../assets/background.png";
+import submit from "../assets/submit.png";
+import submitHover from "../assets/submithover.png";
 import "./index.css";
 // @ts-ignore
 import { fetchGPTQuestion, verifyGPTAnswer } from "./gptapi.js";
@@ -10,6 +12,8 @@ function App() {
   const [aiCritique, setAiCritique] = useState("");
 
   const [showCritique, setShowCritique] = useState(false);
+
+  const [imgSource, setImgSource] = useState(submit);
 
   const searchParams = useMemo(() => {
     return new URLSearchParams(window.location.search);
@@ -34,10 +38,8 @@ function App() {
   };
 
   const handleSubmitAnswer = () => {
-    setAiCritique(verifyGPTAnswer(String(question), answer));
-    console.log(question);
-    console.log(answer);
     setShowCritique(true);
+    setAiCritique(verifyGPTAnswer(String(question), answer));
   };
 
   return (
@@ -68,16 +70,18 @@ function App() {
                   onChange={handleChangeAnswer}
                 />
                 <br />
-                <button
-                  className="bg-white border-2 border-[#e0deb4] px-2 pt-1 align-middle"
+                <img
+                  className="cursor-pointer"
+                  src={imgSource}
+                  onMouseDown={() => setImgSource(submitHover)}
+                  onMouseUp={() => setImgSource(submit)}
+                  onMouseLeave={() => setImgSource(submit)}
                   onClick={handleSubmitAnswer}
-                >
-                  SUBMIT
-                </button>
+                />
                 {showCritique && (
                   <>
                     <hr className="my-4 h-0.5 bg-[#e0deb4] border-0" />
-                    <p>{aiCritique}</p>
+                    <p>{aiCritique || "Loading critique..."}</p>
                   </>
                 )}
               </section>
