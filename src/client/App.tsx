@@ -1,12 +1,15 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import bgImg from "../assets/Sprite-0003.png";
 import "./index.css";
 // @ts-ignore
-import { fetchGPTQuestion } from "./gptapi.js";
+import { fetchGPTQuestion, verifyGPTAnswer } from "./gptapi.js";
 
 function App() {
   const [answer, setAnswer] = useState("");
   const [question, setQuestion] = useState("");
+  const [aiCritique, setAiCritique] = useState("");
+
+  const [showCritique, setShowCritique] = useState(false);
 
   const searchParams = useMemo(() => {
     return new URLSearchParams(window.location.search);
@@ -15,8 +18,26 @@ function App() {
   const givenSubject = searchParams.get("subject") || "";
   if (givenSubject) localStorage.setItem("subject", givenSubject);
 
+  const hasRun = useRef(false);
+  useEffect(() => {
+    if (!hasRun.current) {
+      fetchGPTQuestion(
+        "Ask me a short random question about " +
+          localStorage.getItem("subject"),
+      ).then((result: string) => setQuestion(result));
+      hasRun.current = true;
+    }
+  }, []);
+
   const handleChangeAnswer = (event: any) => {
     setAnswer(event.target.value);
+  };
+
+  const handleSubmitAnswer = () => {
+    setAiCritique(verifyGPTAnswer(String(question), answer));
+    console.log(question);
+    console.log(answer);
+    setShowCritique(true);
   };
 
   return (
@@ -49,7 +70,7 @@ function App() {
 
           <br />
           <section>
-            <p>AI QUESTION</p>
+            <p>{question || "Loading question..."}</p>
             <textarea
               id="answerToAI"
               className="bg-white border-2 border-black p-1 w-full"
@@ -61,12 +82,16 @@ function App() {
             <br />
             <button
               className="bg-white border-2 border-[#e0deb4] px-2 pt-1 align-middle"
-              onClick={() => alert(answer)}
+              onClick={handleSubmitAnswer}
             >
               SUBMIT
             </button>
-            <hr className="my-4 h-0.5 bg-[#e0deb4] border-0" />
-            <p>AI CRITIQUE</p>
+            {showCritique && (
+              <>
+                <hr className="my-4 h-0.5 bg-[#e0deb4] border-0" />
+                <p>{aiCritique}</p>
+              </>
+            )}
           </section>
         </div>
       </div>
