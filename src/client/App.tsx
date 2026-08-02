@@ -1,10 +1,12 @@
 import { useMemo, useState } from "react";
 import bgImg from "../assets/Sprite-0003.png";
 import "./index.css";
+// @ts-ignore
+import { fetchGPTQuestion } from "./gptapi.js";
 
 function App() {
   const [answer, setAnswer] = useState("");
-  const [subject, setSubject] = useState("");
+  const [question, setQuestion] = useState("");
 
   const searchParams = useMemo(() => {
     return new URLSearchParams(window.location.search);
@@ -15,14 +17,6 @@ function App() {
 
   const handleChangeAnswer = (event: any) => {
     setAnswer(event.target.value);
-  };
-
-  const handleChangeSubject = (event: any) => {
-    setSubject(event.target.value);
-  };
-
-  const handleSaveSubject = () => {
-    localStorage.setItem("subject", subject);
   };
 
   return (
@@ -64,6 +58,8 @@ function App() {
         />
         <button onClick={() => alert(answer)}>Submit</button>
       </section>
+      <button onClick={() => setQuestion(fetchGPTQuestion("Back end programming."))}>TESTTEST</button>
+      <p>{question}</p>
     </>
   );
 }

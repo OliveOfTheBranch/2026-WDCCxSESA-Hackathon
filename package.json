@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "devStart": "node server.js"
+    "devStart": "node ./src/server/server.js"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
@@ -17,6 +17,7 @@
     "express": "^5.2.1",
     "json": "^11.0.0",
     "openai": "^7.3.0",
+    "path": "^0.12.7",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "tailwindcss": "^4.3.3"
@@ -28,6 +29,6 @@
     "@vitejs/plugin-react": "^6.0.3",
     "oxlint": "^1.71.0",
     "typescript": "~6.0.2",
-    "vite": "^8.1.1"
+    "vite": "^8.2.0"
   }
 }

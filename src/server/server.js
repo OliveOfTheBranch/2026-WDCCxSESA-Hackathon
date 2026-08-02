@@ -1,20 +1,27 @@
 
 //middleware
-const { json } = require("body-parser");
-const express = require("express");
-const {OpenAI} = require('openai'); 
-require('dotenv').config();
-const cors = require("cors");
+import express from "express";
+import json from "json";
+import OpenAI from "openai";
+import cors from "cors";
+import path from 'path';
+import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
 
 //setting middleware
 const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, '../client')));
 app.set("view engine", "ejs");
 app.use(cors());
+dotenv.config()
+
 
 //API & env
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+console.log(process.env)
+const openAI = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 const PORT = process.env.PORT;
 
 
@@ -23,7 +30,7 @@ const PORT = process.env.PORT;
 app.post('/api/chat', async (req, res) => {
     try{
         const { messages } = req.body;
-        const response = await openai.chat.completions.create({
+        const response = await openAI.chat.completions.create({
         model: 'gpt-4o-mini', 
         messages: messages,
         });
@@ -39,9 +46,11 @@ app.post('/api/chat', async (req, res) => {
     }
 });
 
+
+
 //default page rendering
 app.get("/", async (req, res) =>{
-    res.render('main.ejs');
+    res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
 })
 
 app.listen(PORT, () => {

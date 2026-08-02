@@ -1,6 +1,6 @@
 const baseURL = 'http://localhost:6767'
 
-async function fetchGPTQuestion(p){
+export async function fetchGPTQuestion(p){
   const payload = {
       messages: [
         { role: 'system', content: 'Generate a flashcard-like question for this prompt in 3 sentences or less' },
@@ -23,7 +23,7 @@ async function fetchGPTQuestion(p){
 }
 
 
-async function verifyGPTAnswer(question, answer){
+export async function verifyGPTAnswer(question, answer){
   const payload = {
       messages: [
         { role: 'system', content: 'give a 1 - 10 rating on the accuracy of the answer provided in comparison to the question. explain in max 30 words why, but use way less than 30 words if you can' },
@@ -44,6 +44,3 @@ async function verifyGPTAnswer(question, answer){
     return(data.content)
 
 }
-
-fetchGPTQuestion("1st grade science")
-verifyGPTAnswer("Why are leaves green?", "Because they contain clorophyll")
