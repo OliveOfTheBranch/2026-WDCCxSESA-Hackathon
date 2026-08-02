@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import bgImg from "../assets/Sprite-0003.png";
+import bgImg from "../assets/background.png";
 import "./index.css";
 // @ts-ignore
 import { fetchGPTQuestion, verifyGPTAnswer } from "./gptapi.js";
