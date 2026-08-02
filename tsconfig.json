@@ -3,5 +3,10 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
-  ]
+  ],
+  "compilerOptions": {
+    "allowJs": true,          // Allows TypeScript to compile JavaScript files
+    "esModuleInterop": true,   // Ensures seamless default imports from CommonJS modules
+    "checkJs": false           // Optional: Set to true if you want TS to type-check your JS files
+  }
 }
