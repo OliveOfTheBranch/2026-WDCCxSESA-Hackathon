@@ -17,14 +17,6 @@ function App() {
     setAnswer(event.target.value);
   };
 
-  const handleChangeSubject = (event: any) => {
-    setSubject(event.target.value);
-  };
-
-  const handleSaveSubject = () => {
-    localStorage.setItem("subject", subject);
-  };
-
   return (
     <>
       <div
@@ -55,13 +47,24 @@ function App() {
 
           <br />
           <section>
-            <p>Explain {localStorage.getItem("subject")} to me.</p>
-            <input
+            <p>AI QUESTION</p>
+            <textarea
+              id="answerToAI"
+              className="bg-white border-2 border-black p-1 w-full"
+              rows={3}
               placeholder="Type your answer here..."
               value={answer}
               onChange={handleChangeAnswer}
             />
-            <button onClick={() => alert(answer)}>Submit</button>
+            <br />
+            <button
+              className="bg-white border-2 border-[#e0deb4] px-2 pt-1 align-middle"
+              onClick={() => alert(answer)}
+            >
+              SUBMIT
+            </button>
+            <hr className="my-4 h-0.5 bg-[#e0deb4] border-0" />
+            <p>AI CRITIQUE</p>
           </section>
         </div>
       </div>
