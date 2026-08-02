@@ -58,7 +58,13 @@ function App() {
         />
         <button onClick={() => alert(answer)}>Submit</button>
       </section>
-      <button onClick={() => setQuestion(fetchGPTQuestion("Back end programming."))}>TESTTEST</button>
+      <button
+        onClick={() =>
+          setQuestion(fetchGPTQuestion("Being silly and whimsical."))
+        }
+      >
+        TESTTEST
+      </button>
       <p>{question}</p>
     </>
   );
