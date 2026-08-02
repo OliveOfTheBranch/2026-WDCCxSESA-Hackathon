@@ -3,7 +3,7 @@ const baseURL = 'http://localhost:6767'
 export async function fetchGPTQuestion(p){
   const payload = {
       messages: [
-        { role: 'system', content: 'Generate a flashcard-like question for this prompt in 3 sentences or less' },
+        { role: 'system', content: 'Generate a random flashcard-like question for this subject in 3 sentences or less' },
         { role: 'user', content: p },
       ],
     };
@@ -26,7 +26,7 @@ export async function fetchGPTQuestion(p){
 export async function verifyGPTAnswer(question, answer){
   const payload = {
       messages: [
-        { role: 'system', content: 'give a 1 - 10 rating on the accuracy of the answer provided in comparison to the question. explain in max 30 words why, but use way less than 30 words if you can' },
+        { role: 'system', content: 'Give a fair critique on the answer by considering what the question asked, and suggest some further points that the user could investigate, while attempting to stay under 30 words. You can include compliments to the users answer.' },
         { role: 'user', content: ( 'Question: ' + question + 'Answer: ' + answer)},
       ],
     };

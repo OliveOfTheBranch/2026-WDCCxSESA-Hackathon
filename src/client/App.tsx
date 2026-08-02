@@ -55,6 +55,32 @@ function App() {
               <p className="mt-2 text-gray-600">
                 Answer this question before you can continue scrolling.
               </p>
+
+              <br />
+              <section>
+                <p>{question || "Loading question..."}</p>
+                <textarea
+                  id="answerToAI"
+                  className="bg-white border-2 border-black p-1 w-full"
+                  rows={3}
+                  placeholder="Type your answer here..."
+                  value={answer}
+                  onChange={handleChangeAnswer}
+                />
+                <br />
+                <button
+                  className="bg-white border-2 border-[#e0deb4] px-2 pt-1 align-middle"
+                  onClick={handleSubmitAnswer}
+                >
+                  SUBMIT
+                </button>
+                {showCritique && (
+                  <>
+                    <hr className="my-4 h-0.5 bg-[#e0deb4] border-0" />
+                    <p>{aiCritique}</p>
+                  </>
+                )}
+              </section>
             </>
           ) : (
             <>
@@ -67,32 +93,6 @@ function App() {
               </p>
             </>
           )}
-
-          <br />
-          <section>
-            <p>{question || "Loading question..."}</p>
-            <textarea
-              id="answerToAI"
-              className="bg-white border-2 border-black p-1 w-full"
-              rows={3}
-              placeholder="Type your answer here..."
-              value={answer}
-              onChange={handleChangeAnswer}
-            />
-            <br />
-            <button
-              className="bg-white border-2 border-[#e0deb4] px-2 pt-1 align-middle"
-              onClick={handleSubmitAnswer}
-            >
-              SUBMIT
-            </button>
-            {showCritique && (
-              <>
-                <hr className="my-4 h-0.5 bg-[#e0deb4] border-0" />
-                <p>{aiCritique}</p>
-              </>
-            )}
-          </section>
         </div>
       </div>
     </>
